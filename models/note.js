@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const noteSchema = new mongoose.Schema({
   title: {
     type: String,
+    unique: true,
     required: true
   },
   content: {
@@ -12,7 +13,8 @@ const noteSchema = new mongoose.Schema({
   },
   createdAt: {
     type: Date,
-    default: Date.now
+    default: Date.now,
+    immutable: true
   },
   updatedAt: {
     type: Date,
@@ -21,7 +23,8 @@ const noteSchema = new mongoose.Schema({
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
-    required: true
+    required: true,
+    immutable: true
   }
 });
 

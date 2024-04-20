@@ -7,6 +7,7 @@ const {jwtAuthMiddleware, generateToken} = require('./../jwt');
 router.post('/signup', async (req, res) =>{
     try{
         const data = req.body; // Assuming the request body contains the User data
+        console.log(data);
 
         // Check if a user with the same username already exists
         const existingUser = await User.findOne({ username: data.username });
@@ -39,19 +40,19 @@ router.post('/signup', async (req, res) =>{
 router.post('/login', async(req, res) => {
     try{
         // Extract aadharCardNumber and password from request body
-        const {aadharCardNumber, password} = req.body;
+        const {username, password} = req.body;
 
         // Check if aadharCardNumber or password is missing
-        if (!aadharCardNumber || !password) {
-            return res.status(400).json({ error: 'Aadhar Card Number and password are required' });
+        if (!username || !password) {
+            return res.status(400).json({ error: 'username and password are required' });
         }
 
-        // Find the user by aadharCardNumber
-        const user = await User.findOne({aadharCardNumber: aadharCardNumber});
+        // Find the user by username
+        const user = await User.findOne({username: username});
 
         // If user does not exist or password does not match, return error
         if( !user || !(await user.comparePassword(password))){
-            return res.status(401).json({error: 'Invalid Aadhar Card Number or Password'});
+            return res.status(401).json({error: 'Invalid username or Password'});
         }
 
         // generate Token 
@@ -81,6 +82,7 @@ router.get('/profile', jwtAuthMiddleware, async (req, res) => {
     }
 })
 
+//change password
 router.put('/profile/password', jwtAuthMiddleware, async (req, res) => {
     try {
         const userId = req.user.id; // Extract the id from the token

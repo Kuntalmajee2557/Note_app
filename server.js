@@ -11,11 +11,13 @@ app.use(bodyParser.json()); // req.body
 
 const port = 8080;
 
+const noteRoutes = require("./routes/noteRoutes.js");
+app.use('/note', noteRoutes);
+
+
 const userRoutes = require("./routes/userRoutes.js");
 app.use('/user', userRoutes);
 
-const noteRoutes = require("./routes/noteRoutes.js");
-app.use('/note', noteRoutes);
 
 
 app.get("/", (req, res) => {
