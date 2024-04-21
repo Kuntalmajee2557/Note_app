@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>List of Note</h3>
+    <a href="/note/new?token=<%= token %>">New</a>
+
+    <form method="get" action="/note/new?token=<%= token %>">
+        <button type="submit">New</button>
+    </form>
+    
+    <% for(note of list){ %>
+        <h2>title: <%= note.title %></h2>
+        <p>Content: <%= note.content %></p>
+        <p>Created At: <%= note.createdAt.toString().split(" ").slice(0, 1).join(" ") %> <%= note.createdAt.toString().split(" ").slice(1, 4).join(" -") %> <%= note.createdAt.toString().split(" ")[4] %></p>
+        <p>Updated At: <%= note.updatedAt.toString().split(" ").slice(0, 1).join(" ") %> <%= note.updatedAt.toString().split(" ").slice(1, 4).join(" -") %> <%= note.updatedAt.toString().split(" ")[4] %></p>
+        <a href="/note/edit/<%= note.id %>?token=<%= token %>">edit</a>
+        <form method="get" action="/note/edit/<%= note.id %>?token=<%= token %>" >
+            <button>edit</button>
+        </form>
+
+        <form method="post" action="/note/delete/<%= note.id %>?token=<%= token %>&_method=PUT">
+            <button>delete</button>
+        </form>
+        <hr>
+        <% } %>
+</body>
+</html>
