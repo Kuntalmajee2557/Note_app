@@ -4,11 +4,16 @@ const jwt = require('jsonwebtoken');
 const jwtAuthMiddleware = (req, res, next) => {
 
     // first check request headers has authorization or not
-    const authorization = req.headers.authorization
+    // const authorization = req.headers.authorization
+    const authorization = req.query.token;
+    console.log(authorization);
+
     if(!authorization) return res.status(401).json({ error: 'Token Not Found' });
 
     // Extract the jwt token from the request headers
-    const token = req.headers.authorization.split(' ')[1];
+    // const token = req.headers.authorization.split(' ')[1];
+    const token = req.query.token;
+
     if(!token) return res.status(401).json({ error: 'Unauthorized' });
 
     try{
