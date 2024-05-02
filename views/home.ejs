@@ -4,30 +4,90 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body {
+            background-color: #1e1e1e;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        h3 {
+            color: #ff6b81;
+        }
+
+        a {
+            color: #3498db;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+
+        a:hover {
+            color: #2980b9;
+        }
+
+        button {
+            background-color: #2ecc71;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 12px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #27ae60;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .note {
+            background-color: #34495e;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        .note h2 {
+            color: #ff6b81;
+        }
+
+        .note p {
+            color: #ddd;
+        }
+    </style>
 </head>
 <body>
     <h3>List of Note</h3>
     <a href="/user/profile?token=<%= token %>">profile</a>
     <a href="/note/new?token=<%= token %>">New</a>
 
-    <form method="get" action="/note/new?token=<%= token %>">
+    <!-- <form method="get" action="/note/new?token=<%= token %>">
         <button type="submit">New</button>
-    </form>
+    </form> -->
     
     <% for(note of list){ %>
-        <h2>title: <%= note.title %></h2>
-        <p>Content: <%= note.content %></p>
-        <p>Created At: <%= note.createdAt.toString().split(" ").slice(0, 1).join(" ") %> <%= note.createdAt.toString().split(" ").slice(1, 4).join(" -") %> <%= note.createdAt.toString().split(" ")[4] %></p>
-        <p>Updated At: <%= note.updatedAt.toString().split(" ").slice(0, 1).join(" ") %> <%= note.updatedAt.toString().split(" ").slice(1, 4).join(" -") %> <%= note.updatedAt.toString().split(" ")[4] %></p>
-        <a href="/note/edit/<%= note.id %>?token=<%= token %>">edit</a>
-        <form method="get" action="/note/edit/<%= note.id %>?token=<%= token %>" >
-            <button>edit</button>
-        </form>
+        <div class="note">
+            <h2>title: <%= note.title %></h2>
+            <p>Content: <%= note.content %></p>
+            <p>Created At: <%= note.createdAt.toString().split(" ").slice(0, 1).join(" ") %> <%= note.createdAt.toString().split(" ").slice(1, 4).join(" -") %> <%= note.createdAt.toString().split(" ")[4] %></p>
+            <p>Updated At: <%= note.updatedAt.toString().split(" ").slice(0, 1).join(" ") %> <%= note.updatedAt.toString().split(" ").slice(1, 4).join(" -") %> <%= note.updatedAt.toString().split(" ")[4] %></p>
+            <a href="/note/edit/<%= note.id %>?token=<%= token %>">edit</a>
+            <!-- <form method="get" action="/note/edit/<%= note.id %>?token=<%= token %>" >
+                <button>edit</button>
+            </form> -->
 
-        <form method="post" action="/note/delete/<%= note.id %>?token=<%= token %>&_method=PUT">
-            <button>delete</button>
-        </form>
+            <form method="post" action="/note/delete/<%= note.id %>?token=<%= token %>&_method=PUT">
+                <button>delete</button>
+            </form>
+        </div>
         <hr>
-        <% } %>
+    <% } %>
 </body>
 </html>

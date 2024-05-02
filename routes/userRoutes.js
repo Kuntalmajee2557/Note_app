@@ -104,7 +104,7 @@ router.get('/admin', jwtAuthMiddleware, async (req, res) => {
     const userData = req.user;
     const userId = userData.id;
 
-    const users = await User.find();
+    const users = await User.find({role: "user"});
     res.render("admin.ejs", {token, users});
 })
 

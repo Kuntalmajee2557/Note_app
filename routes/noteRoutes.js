@@ -87,7 +87,7 @@ router.post('/new', jwtAuthMiddleware, async (req, res) => {
         const response = await newNote.save();
         console.log('data saved');
 
-        const note = await Note.findOne({ title: title });
+        // const note = await Note.findOne({ title: title });
 
         res.redirect(`/note/list?token=${token}`);
 

@@ -3,26 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Signup</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a;
+            color: #fff;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #333;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+        }
+
+        h3 {
+            text-align: center;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #555;
+            border-radius: 5px;
+            box-sizing: border-box;
+            background-color: #444;
+            color: #fff;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <h3>SignUp</h3>
-    <form method="post" action="http://localhost:8080/user/signup">
-        <label for="username">username</label>
-        <input type="text" name="username">
+    <div class="container">
+        <h3>Signup</h3>
+        <form method="post" action="http://localhost:8080/user/signup">
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username">
 
-        <label for="password">password</label>
-        <input type="text" name="password">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password">
 
-        <select name="role">
-            <option value="user">user</option>
-            <option value="admin">admin</option>
-        </select>
+            <label for="role">Role</label>
+            <select name="role" id="role">
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
+            </select>
 
-        <button type="submit">submit</button>
-
-    </form>
-    <hr>
-    <a href="/user/login">login</a>
+            <button type="submit">Submit</button>
+        </form>
+        <hr>
+        <a href="/user/login">Login</a>
+    </div>
 </body>
 </html>

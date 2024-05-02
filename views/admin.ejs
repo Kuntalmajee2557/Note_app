@@ -3,19 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Admin Panel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a;
+            color: #fff;
+        }
+
+        h2 {
+            text-align: center;
+            color: #fff;
+        }
+
+        a {
+            display: block;
+            margin-top: 20px;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        p {
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 8px 12px;
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #c82333;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #ccc;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h2>Admin</h2>
-    <a href="/user/profile?token=<%= token %>">profile</a>
+    <h2>Admin Panel</h2>
+    <a href="/user/profile?token=<%= token %>">Profile</a>
 
     <% for(user of users){ %>
-        <p>username: <%= user.username %></p>
+        <p>Username: <%= user.username %></p>
         <form method="post" action="/user/delete/<%= user.id %>?token=<%= token %>&_method=PUT">
             <button>Delete User</button>
         </form>
         <hr>
-        
     <% } %>
 </body>
 </html>
